@@ -29,8 +29,19 @@ public class BookList {
         return books.size();
     }
 
+    public Book getBook(String title) {
+        for (Book b: books) {
+            if (b.getTitle().equals(title)) {
+                return b;
+            }
+        }
+        return null;
+
+    }
+
     public List<Book> getAllBooks() {
         return books;
+
     }
 
 

@@ -12,7 +12,7 @@ public class Book {
         this.title = bookTitle;
         this.author = bookAuthor;
         this.genre = genre;
-        this.status = ReadingStatus.READING;
+        this.status = ReadingStatus.WANT_TO_READ;
     }
 
     //REQUIRES: doneReading is lower case
@@ -20,6 +20,13 @@ public class Book {
     //EFFECTS: if doneReading == "yes", sets isRead to true. else, leaves isRead to false
     //setter maybe?
 
+    public void setReadingStatus(ReadingStatus status) {
+        this.status = status;
+    }
+
+    public String getReadingStatus() {
+        return status.getStatus();
+    }
 
     public String getTitle() {
         return title;

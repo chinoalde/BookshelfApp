@@ -41,4 +41,14 @@ public class BookListTest {
         assertEquals(2, testBooks.bookListSize());
         assertEquals(b2.getTitle(), testBooks.getAllBooks().get(0).getTitle());
     }
+
+    @Test
+    public void testGetBook() {
+        testBooks.addBook(b1);
+        testBooks.addBook(b2);
+        testBooks.addBook(b3);
+
+        Book testBook = testBooks.getBook("Percy Jackson");
+        assertEquals(b1, testBook);
+    }
 }

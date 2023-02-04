@@ -19,4 +19,9 @@ class BookTest {
         assertEquals("Non-fiction", testBook.getGenre());
     }
 
+    @Test
+    public void testGetReadingStatus() {
+        assertEquals("want to read", testBook.getReadingStatus());
+    }
+
 }
