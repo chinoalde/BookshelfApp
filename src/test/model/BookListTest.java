@@ -57,7 +57,7 @@ public class BookListTest {
     @Test
     public void testGetBook() {
         //list is empty
-        Book testBook1, testBook2;
+        Book testBook1;
         testBook1 = testBooks.getBook("Percy Jackson");
         assertEquals(null, testBook1);
 

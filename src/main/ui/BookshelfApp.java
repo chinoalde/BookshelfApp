@@ -44,6 +44,8 @@ public class BookshelfApp {
         System.out.println("\nSee you next time!");
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes books on bookshelf
     private void init() {
         Book b1 = new Book("Think Like a Monk", "Jay Shetty", "Self-help");
 
@@ -55,6 +57,7 @@ public class BookshelfApp {
 
     }
 
+    //EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\n");
         System.out.println("Please Select one of the options below");
@@ -94,6 +97,7 @@ public class BookshelfApp {
         System.out.println("-------------------------------");
     }
 
+    //EFFECTS: prints all book entries
     private void viewAllBooks() {
         List<Book> books = bookList.getAllBooks();
         System.out.println("Here are all of your books:");
@@ -102,6 +106,7 @@ public class BookshelfApp {
 
     }
 
+    //EFFECTS: displays all book entries
     private void displayBooks(List<Book> books) {
         if (books.size() == 0) {
             System.out.println("There are no books. Add some!");
@@ -112,6 +117,9 @@ public class BookshelfApp {
         }
     }
 
+    //REQUIRES: action is one of the given commands
+    //MODIFIES: this
+    //EFFECTS: changes reading status of a book
     private void changeReadingStatus() {
         String title;
         Book book;
@@ -136,6 +144,7 @@ public class BookshelfApp {
         printReadingStatus(book);
     }
 
+    //EFFECTS: displays reading status options of a book
     private void displayingReadingStatus() {
         System.out.println("1 -> Want to Read");
         System.out.println("2 -> Reading");
@@ -180,6 +189,7 @@ public class BookshelfApp {
 
     }
 
+    //EFFECTS: prints out reading status of selected book
     private void printReadingStatus(Book selected) {
         System.out.println("\nThe reading status for " + selected.getTitle() + " is: \n" + selected.getReadingStatus());
     }

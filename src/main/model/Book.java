@@ -15,27 +15,28 @@ public class Book {
         this.status = ReadingStatus.WANT_TO_READ;
     }
 
-    //REQUIRES: doneReading is lower case
     //MODIFIES: this
-    //EFFECTS: if doneReading == "yes", sets isRead to true. else, leaves isRead to false
-    //setter maybe?
-
+    //EFFECTS: updates reading status of the book
     public void setReadingStatus(ReadingStatus status) {
         this.status = status;
     }
 
+    //EFFECTS: returns reading status
     public String getReadingStatus() {
         return status.getStatus();
     }
 
+    //EFFECTS: returns title
     public String getTitle() {
         return title;
     }
 
+    //EFFECTS: returns author
     public String getAuthor() {
         return author;
     }
 
+    //EFFECTS: returns genre
     public String getGenre() {
         return genre;
     }

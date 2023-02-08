@@ -1,5 +1,7 @@
 package model;
 
+
+// different reading status' that a book can have
 public enum ReadingStatus {
     WANT_TO_READ("want to read"),
     READING("reading"),
