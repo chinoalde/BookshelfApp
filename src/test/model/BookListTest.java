@@ -77,6 +77,9 @@ public class BookListTest {
         //list has the book
         testBooks.addBook(b1);
         assertTrue(testBooks.hasBook("Percy Jackson"));
+
+        //list does not have the book
+        assertFalse(testBooks.hasBook("1984"));
     }
 
 }
