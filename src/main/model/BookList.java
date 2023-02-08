@@ -53,6 +53,18 @@ public class BookList {
     }
 
 
+    //EFFECTS: returns true if book is in given list, else false
+    public boolean hasBook(String title) {
+        for (Book b: books) {
+            if (b.getTitle().equals(title)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+
 
 
 

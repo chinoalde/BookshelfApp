@@ -117,7 +117,7 @@ public class BookshelfApp {
         }
     }
 
-    //REQUIRES: action is one of the given commands
+    //REQUIRES: action is one of the given commands and the book is in the book list
     //MODIFIES: this
     //EFFECTS: changes reading status of a book
     private void changeReadingStatus() {
@@ -127,6 +127,7 @@ public class BookshelfApp {
         System.out.println("Please enter the title of the book you want to change the status for");
 
         title = input.next();
+
         book = bookList.getBook(title);
 
 
@@ -193,6 +194,8 @@ public class BookshelfApp {
     private void printReadingStatus(Book selected) {
         System.out.println("\nThe reading status for " + selected.getTitle() + " is: \n" + selected.getReadingStatus());
     }
+
+
 }
 
 

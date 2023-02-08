@@ -7,10 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BookListTest {
     private BookList testBooks;
     private Book b1, b2, b3;
-
-
-
-
     @BeforeEach
     public void runBefore() {
         testBooks = new BookList();
@@ -71,6 +67,16 @@ public class BookListTest {
 
         //book is not in the book set
         assertEquals(null, testBooks.getBook("not here"));
+    }
+
+    @Test
+    public void testHasBook() {
+        //list is empty
+        assertFalse(testBooks.hasBook("Percy Jackson"));
+
+        //list has the book
+        testBooks.addBook(b1);
+        assertTrue(testBooks.hasBook("Percy Jackson"));
     }
 
 }
