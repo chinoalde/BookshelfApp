@@ -121,6 +121,7 @@ public class BookshelfApp {
         title = input.next();
         book = bookList.getBook(title);
 
+
         displayingReadingStatus();
         command = input.next();
 

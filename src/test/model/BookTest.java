@@ -24,4 +24,11 @@ class BookTest {
         assertEquals("want to read", testBook.getReadingStatus());
     }
 
+    @Test
+    public void testSetReadingStatus() {
+        assertEquals("want to read", testBook.getReadingStatus());
+        testBook.setReadingStatus(ReadingStatus.READING);
+        assertEquals("reading", testBook.getReadingStatus());
+    }
+
 }
