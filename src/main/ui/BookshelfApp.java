@@ -60,7 +60,7 @@ public class BookshelfApp {
     //EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\n");
-        System.out.println("Please Select one of the options below");
+        System.out.println("Please select one of the options below:");
         System.out.println("1 -> view all books");
         System.out.println("2 -> change reading status of a book");
         System.out.println("a -> add a new book");
@@ -135,14 +135,18 @@ public class BookshelfApp {
         command = input.next();
 
 
-        if (command.equals("1")) {
-            book.setReadingStatus(ReadingStatus.WANT_TO_READ);
-        } else if (command.equals("2")) {
-            book.setReadingStatus(ReadingStatus.READING);
-        } else if (command.equals("3")) {
-            book.setReadingStatus(ReadingStatus.READ);
+        if (bookList.hasBook(title)) {
+            if (command.equals("1")) {
+                book.setReadingStatus(ReadingStatus.WANT_TO_READ);
+            } else if (command.equals("2")) {
+                book.setReadingStatus(ReadingStatus.READING);
+            } else if (command.equals("3")) {
+                book.setReadingStatus(ReadingStatus.READ);
+            }
+            printReadingStatus(book);
+        } else  {
+            System.out.println("The book entered is not on the book shelf. Please try again. \n");
         }
-        printReadingStatus(book);
     }
 
     //EFFECTS: displays reading status options of a book
