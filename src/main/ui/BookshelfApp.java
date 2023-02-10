@@ -1,5 +1,6 @@
 package ui;
 
+
 import exceptions.NoBookOnShelfException;
 import model.Book;
 import model.BookList;
@@ -73,7 +74,6 @@ public class BookshelfApp {
     //MODIFIES: this
     //EFFECTS: processes user command
     private void processCommand(String command) {
-        String newCommand = command;
         if (command.equals("1")) {
             viewAllBooks();
         } else if (command.equals("2")) {
@@ -84,7 +84,7 @@ public class BookshelfApp {
             removeBookFromBookshelf();
         } else {
             System.out.println("Selection not valid... Please try again!");
-            newCommand = input.next().toLowerCase();
+            String newCommand = input.next().toLowerCase();
             processCommand(newCommand);
 
         }
@@ -101,9 +101,6 @@ public class BookshelfApp {
     private void viewAllBooks() {
         List<Book> books = bookList.getAllBooks();
         displayBooks(books);
-
-
-
     }
 
     //EFFECTS: displays all book entries
@@ -137,7 +134,7 @@ public class BookshelfApp {
             try {
                 throw new NoBookOnShelfException();
             } catch (NoBookOnShelfException e) {
-                System.out.println("The book entered is not on the shelf. Please try again!");
+                throw new RuntimeException(e);
             }
         } else {
             displayingReadingStatus();
@@ -200,7 +197,7 @@ public class BookshelfApp {
             try {
                 throw new NoBookOnShelfException();
             } catch (NoBookOnShelfException e) {
-                System.out.println("Can't remove a book that isn't there!");
+                System.out.println("");
             }
         } else {
             bookList.removeBook(title);
