@@ -3,18 +3,18 @@ package model;
 
 // different reading status' that a book can have
 public enum ReadingStatus {
-    WANT_TO_READ("want to read"),
-    READING("reading"),
-    READ("read");
+    WANT_TO_READ("Want to Read"),
+    READING("Reading"),
+    READ("Read");
 
-    private String key;
+    private String status;
 
     ReadingStatus(String status) {
-        key = status;
+        this.status = status;
     }
 
     public String getStatus() {
-        return this.key;
+        return this.status;
     }
 
 }
