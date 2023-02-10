@@ -1,10 +1,10 @@
 package ui;
 
+import exceptions.NoBookOnShelfException;
 import model.Book;
 import model.BookList;
 import model.ReadingStatus;
 
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
@@ -100,9 +100,9 @@ public class BookshelfApp {
     //EFFECTS: prints all book entries
     private void viewAllBooks() {
         List<Book> books = bookList.getAllBooks();
-        System.out.println("Here are all of your books:");
         displayBooks(books);
-//        System.out.println("\n");
+
+
 
     }
 
@@ -111,41 +111,52 @@ public class BookshelfApp {
         if (books.size() == 0) {
             System.out.println("There are no books. Add some!");
         } else {
+            System.out.println("Here are all of your books:");
             for (Book b : books) {
                 System.out.println(b.getTitle());
             }
         }
     }
 
+    //TODO
+    private void viewBooksFromGenre() {
+    }
+
+    //TODO
+    private void viewBooksFromAuthor() {}
+
     //REQUIRES: action is one of the given commands and the book is in the book list
     //MODIFIES: this
     //EFFECTS: changes reading status of a book
     private void changeReadingStatus() {
-        String title;
-        Book book;
-        String command;
         System.out.println("Please enter the title of the book you want to change the status for");
 
-        title = input.next();
-
-        book = bookList.getBook(title);
-
-
-        displayingReadingStatus();
-        command = input.next();
-
-
-        if (bookList.hasBook(title)) {
-            if (command.equals("1")) {
-                book.setReadingStatus(ReadingStatus.WANT_TO_READ);
-            } else if (command.equals("2")) {
-                book.setReadingStatus(ReadingStatus.READING);
-            } else if (command.equals("3")) {
-                book.setReadingStatus(ReadingStatus.READ);
+        String title = input.next();
+        Book book = bookList.getBook(title);
+        if (!bookList.hasBook(title)) {
+            try {
+                throw new NoBookOnShelfException();
+            } catch (NoBookOnShelfException e) {
+                System.out.println("The book entered is not on the shelf. Please try again!");
             }
+        } else {
+            displayingReadingStatus();
+            String command = input.next();
+            setBookStatus(book, command);
             printReadingStatus(book);
-        } else  {
-            System.out.println("The book entered is not on the book shelf. Please try again. \n");
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: helper method to change reading status of a book
+    // can change the name of this method - TODO
+    private void setBookStatus(Book book, String command) {
+        if (command.equals("1")) {
+            book.setReadingStatus(ReadingStatus.WANT_TO_READ);
+        } else if (command.equals("2")) {
+            book.setReadingStatus(ReadingStatus.READING);
+        } else if (command.equals("3")) {
+            book.setReadingStatus(ReadingStatus.READ);
         }
     }
 
@@ -160,43 +171,48 @@ public class BookshelfApp {
     //MODIFIES: this
     //EFFECTS: adds book to bookshelf
     private void addBookToBookshelf() {
-        String title;
-        String author;
-        String genre;
 
         System.out.println("Enter the title of the book: ");
-        title = input.next();
+        String title = input.next();
 
         System.out.println("Enter the author of the book: ");
-        author = input.next();
+        String author = input.next();
 
         System.out.println("Enter the genre of the book: ");
-        genre = input.next();
+        String genre = input.next();
 
         Book newBook = new Book(title, author, genre);
 
         bookList.addBook(newBook);
 
-        System.out.println("Voila! A new book on the bookshelf!");
-
+        System.out.println("Voila! " + newBook.getTitle() + " has been added to the bookshelf!");
     }
 
+    //REQUIRES: book is on the shelf
     //MODIFIES: this
     //EFFECTS: removes book from bookshelf
     private void removeBookFromBookshelf() {
-        String title;
-
         System.out.println("Enter the title of the book you'd like to remove: ");
-        title = input.next();
-        bookList.removeBook(title);
 
-        System.out.println(title + " has been removed!");
+        String title = input.next();
+
+        if (!bookList.hasBook(title)) {
+            try {
+                throw new NoBookOnShelfException();
+            } catch (NoBookOnShelfException e) {
+                System.out.println("Can't remove a book that isn't there!");
+            }
+        } else {
+            bookList.removeBook(title);
+            System.out.println(title + " has been removed!");
+        }
 
     }
 
     //EFFECTS: prints out reading status of selected book
     private void printReadingStatus(Book selected) {
-        System.out.println("\nThe reading status for " + selected.getTitle() + " is: \n" + selected.getReadingStatus());
+        System.out.println("\nThe reading status for " + selected.getTitle()
+                + " is now: \n" + selected.getReadingStatus());
     }
 
 
