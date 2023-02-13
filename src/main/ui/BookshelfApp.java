@@ -1,7 +1,6 @@
 package ui;
 
 
-import exceptions.NoBookOnShelfException;
 import model.Book;
 import model.BookList;
 import model.ReadingStatus;

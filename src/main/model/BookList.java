@@ -1,6 +1,5 @@
 package model;
 
-import exceptions.NoBookOnShelfException;
 
 import java.util.ArrayList;
 import java.util.List;
