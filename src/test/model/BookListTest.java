@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.NoBookOnShelfException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -82,4 +83,18 @@ public class BookListTest {
         assertFalse(testBooks.hasBook("1984"));
     }
 
+//    @Test
+//    public void testHasBookButNoBook() {
+//        //expecting numBooks to be 1, and no exceptions thrown
+//        BookList bookList = new BookList();
+//        bookList.addBook(b2);
+//
+//        try {
+//            bookList.hasBook(b2.getTitle());
+//        } catch (NoBookOnShelfException e) {
+//            fail("Got NoBookOnShelfException when shouldn't have");
+//        }
+//
+//    }
+//
 }

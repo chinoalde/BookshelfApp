@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 
 //Bookshelf application
-
 //references code from https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class BookshelfApp {
     private BookList bookList;
@@ -120,7 +119,8 @@ public class BookshelfApp {
     }
 
     //TODO
-    private void viewBooksFromAuthor() {}
+    private void viewBooksFromAuthor() {
+    }
 
     //REQUIRES: action is one of the given commands and the book is in the book list
     //MODIFIES: this
@@ -130,19 +130,17 @@ public class BookshelfApp {
 
         String title = input.next();
         Book book = bookList.getBook(title);
-        if (!bookList.hasBook(title)) {
-            try {
-                throw new NoBookOnShelfException();
-            } catch (NoBookOnShelfException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
+        if (bookList.hasBook(title)) {
             displayingReadingStatus();
             String command = input.next();
             setBookStatus(book, command);
             printReadingStatus(book);
+        } else {
+            System.out.println("Can't change the status of a book that isn't there!");
         }
+
     }
+
 
     //MODIFIES: this
     //EFFECTS: helper method to change reading status of a book
@@ -193,15 +191,11 @@ public class BookshelfApp {
 
         String title = input.next();
 
-        if (!bookList.hasBook(title)) {
-            try {
-                throw new NoBookOnShelfException();
-            } catch (NoBookOnShelfException e) {
-                System.out.println("");
-            }
-        } else {
+        if (bookList.hasBook(title)) {
             bookList.removeBook(title);
             System.out.println(title + " has been removed!");
+        } else {
+            System.out.println("Can't remove a book that isn't on the shelf! Please try again");
         }
 
     }

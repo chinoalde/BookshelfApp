@@ -1,11 +1,11 @@
 package model;
 
+// represents a book with a title, author, genre, and reading status
 public class Book {
     private final String title;
     private final String author;
     private final String genre;
     private ReadingStatus status;
-
 
 
     public Book(String bookTitle, String bookAuthor, String genre) {

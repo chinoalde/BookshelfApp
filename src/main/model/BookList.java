@@ -1,8 +1,11 @@
 package model;
 
+import exceptions.NoBookOnShelfException;
+
 import java.util.ArrayList;
 import java.util.List;
 
+// represents a list of books
 public class BookList {
     private List<Book> books;
 
@@ -53,6 +56,7 @@ public class BookList {
     }
 
 
+    //REQUIRES: books is not empty
     //EFFECTS: returns true if book is in given list, else false
     public boolean hasBook(String title) {
         for (Book b: books) {
@@ -63,6 +67,8 @@ public class BookList {
         return false;
 
     }
+
+
 
 
 
