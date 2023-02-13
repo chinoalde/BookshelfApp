@@ -1,0 +1,119 @@
+Index: src/main/model/BookList.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class BookList {\r\n    private List<Book> books;\r\n\r\n    public BookList() {\r\n        this.books = new ArrayList<>();\r\n    }\r\n\r\n    //MODIFIES: this\r\n    //EFFECTS: adds a book to the list of books\r\n    public void addBook(Book book) {\r\n        books.add(book);\r\n    }\r\n\r\n    //REQUIRES: books is not empty\r\n    //MODIFIES: this\r\n    //EFFECTS: removes the book with the matching\r\n    //         title from the list of books\r\n    public void removeBook(String title) {\r\n        for (Book b: books) {\r\n            if (b.getTitle().equals(title)) {\r\n                books.remove(b);\r\n                break;\r\n            }\r\n        }\r\n    }\r\n\r\n    //EFFECTS: returns the number of books in the list\r\n    public int bookListSize() {\r\n        return books.size();\r\n    }\r\n\r\n    //REQUIRES: books is not empty\r\n    //EFFECTS: gets the book with the matching title from the list of books\r\n    public Book getBook(String title) {\r\n        for (Book b: books) {\r\n            if (b.getTitle().equals(title)) {\r\n                return b;\r\n            }\r\n        }\r\n        return null;\r\n\r\n    }\r\n\r\n    //REQUIRES: books is not empty\r\n    //EFFECTS: returns all books in the list\r\n    public List<Book> getAllBooks() {\r\n        return books;\r\n    }\r\n\r\n\r\n    //EFFECTS: returns true if book is in given list, else false\r\n    public boolean hasBook(String title) {\r\n        for (Book b: books) {\r\n            if (b.getTitle().equals(title)) {\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/model/BookList.java b/src/main/model/BookList.java
+--- a/src/main/model/BookList.java	(revision 9631957d000094a992c6ff31be3f0d1788208d68)
++++ b/src/main/model/BookList.java	(date 1676077787353)
+@@ -1,5 +1,7 @@
+ package model;
+ 
++import exceptions.NoBookOnShelfException;
++
+ import java.util.ArrayList;
+ import java.util.List;
+ 
+@@ -56,13 +58,20 @@
+     //EFFECTS: returns true if book is in given list, else false
+     public boolean hasBook(String title) {
+         for (Book b: books) {
+-            if (b.getTitle().equals(title)) {
+-                return true;
+-            }
+-        }
+-        return false;
++            if (!b.getTitle().equals(title)) {
++                try {
++                    throw new NoBookOnShelfException();
++                } catch (NoBookOnShelfException e) {
++                    System.out.println("There is no such book on the shelf!");
++                }
++                return false;
++            }
++        }
++        return true;
+ 
+     }
++
++
+ 
+ 
+ 
+Index: src/test/model/BookListTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model;\r\n\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\npublic class BookListTest {\r\n    private BookList testBooks;\r\n    private Book b1, b2, b3;\r\n    @BeforeEach\r\n    public void runBefore() {\r\n        testBooks = new BookList();\r\n        b1 = new Book(\"Percy Jackson\", \"Rick Riordan\", \"Fantasy\");\r\n        b2 = new Book(\"1984\", \"George Orwell\", \"Fiction\");\r\n        b3 = new Book(\"Think Like a Monk\", \"Jay Shetty\", \"Self-help\");\r\n    }\r\n\r\n    @Test\r\n    public void testAddBooks() {\r\n        assertEquals(0, testBooks.bookListSize());\r\n        testBooks.addBook(b1);\r\n        assertEquals(1, testBooks.bookListSize());\r\n        testBooks.addBook(b2);\r\n        testBooks.addBook(b3);\r\n        assertEquals(3, testBooks.bookListSize());\r\n    }\r\n\r\n    @Test\r\n    public void testRemoveBooks() {\r\n        assertEquals(0, testBooks.bookListSize());\r\n\r\n        //list is empty\r\n        assertEquals(0, testBooks.bookListSize());\r\n        testBooks.removeBook(b1.getTitle());\r\n\r\n        testBooks.addBook(b1);\r\n        testBooks.addBook(b2);\r\n        testBooks.addBook(b3);\r\n\r\n        //book is in the list and can be removed\r\n        assertEquals(3, testBooks.bookListSize());\r\n        testBooks.removeBook(\"Percy Jackson\");\r\n        assertEquals(2, testBooks.bookListSize());\r\n        assertEquals(b2.getTitle(), testBooks.getAllBooks().get(0).getTitle());\r\n\r\n        testBooks.addBook(b1);\r\n\r\n        //book is not in the list\r\n        testBooks.removeBook(\"book is not here\");\r\n        assertEquals(3, testBooks.bookListSize());\r\n    }\r\n\r\n    @Test\r\n    public void testGetBook() {\r\n        //list is empty\r\n        Book testBook1;\r\n        testBook1 = testBooks.getBook(\"Percy Jackson\");\r\n        assertEquals(null, testBook1);\r\n\r\n        testBooks.addBook(b1);\r\n        testBooks.addBook(b2);\r\n        testBooks.addBook(b3);\r\n\r\n        //book is in the book set\r\n        Book testBook = testBooks.getBook(\"Percy Jackson\");\r\n        assertEquals(b1, testBook);\r\n\r\n        //book is not in the book set\r\n        assertEquals(null, testBooks.getBook(\"not here\"));\r\n    }\r\n\r\n    @Test\r\n    public void testHasBook() {\r\n        //list is empty\r\n        assertFalse(testBooks.hasBook(\"Percy Jackson\"));\r\n\r\n        //list has the book\r\n        testBooks.addBook(b1);\r\n        assertTrue(testBooks.hasBook(\"Percy Jackson\"));\r\n\r\n        //list does not have the book\r\n        assertFalse(testBooks.hasBook(\"1984\"));\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/model/BookListTest.java b/src/test/model/BookListTest.java
+--- a/src/test/model/BookListTest.java	(revision 9631957d000094a992c6ff31be3f0d1788208d68)
++++ b/src/test/model/BookListTest.java	(date 1676078216552)
+@@ -1,5 +1,6 @@
+ package model;
+ 
++import exceptions.NoBookOnShelfException;
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
+ import static org.junit.jupiter.api.Assertions.*;
+@@ -82,4 +83,18 @@
+         assertFalse(testBooks.hasBook("1984"));
+     }
+ 
++    @Test
++    public void testHasBookButNoBook() {
++        //expecting numBooks to be 1, and no exceptions thrown
++        BookList bookList = new BookList();
++        bookList.addBook(b2);
++
++        try {
++            boolean hasBook = bookList.hasBook(b2.getTitle());
++        } catch (NoBookOnShelfException e) {
++            fail("Got NoBookOnShelfException when shouldn't have");
++        }
++
++    }
++
+ }
+Index: src/main/ui/BookshelfApp.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ui;\r\n\r\n\r\nimport exceptions.NoBookOnShelfException;\r\nimport model.Book;\r\nimport model.BookList;\r\nimport model.ReadingStatus;\r\n\r\nimport java.util.List;\r\nimport java.util.Scanner;\r\n\r\n//Bookshelf application\r\n\r\n//references code from https://github.students.cs.ubc.ca/CPSC210/TellerApp\r\npublic class BookshelfApp {\r\n    private BookList bookList;\r\n    private Scanner input;\r\n\r\n    //EFFECTS: runs the bookshelf application\r\n    public BookshelfApp() {\r\n        runBookshelf();\r\n    }\r\n\r\n    //MODIFIES: this\r\n    //EFFECTS: processes user input\r\n    private void runBookshelf() {\r\n        boolean keepGoing = true;\r\n        String command;\r\n\r\n        init();\r\n        displayWelcome();\r\n\r\n        while (keepGoing) {\r\n            displayMenu();\r\n            command = input.next();\r\n            command = command.toLowerCase();\r\n\r\n            if (command.equals(\"q\")) {\r\n                keepGoing = false;\r\n            } else {\r\n                processCommand(command);\r\n            }\r\n        }\r\n\r\n        System.out.println(\"\\nSee you next time!\");\r\n    }\r\n\r\n    //MODIFIES: this\r\n    //EFFECTS: initializes books on bookshelf\r\n    private void init() {\r\n        Book b1 = new Book(\"Think Like a Monk\", \"Jay Shetty\", \"Self-help\");\r\n\r\n        bookList = new BookList();\r\n        bookList.addBook(b1);\r\n\r\n        input = new Scanner(System.in);\r\n        input.useDelimiter(\"\\n\");\r\n\r\n    }\r\n\r\n    //EFFECTS: displays menu of options to user\r\n    private void displayMenu() {\r\n        System.out.println(\"\\n\");\r\n        System.out.println(\"Please select one of the options below:\");\r\n        System.out.println(\"1 -> view all books\");\r\n        System.out.println(\"2 -> change reading status of a book\");\r\n        System.out.println(\"a -> add a new book\");\r\n        System.out.println(\"r -> remove an existing book\");\r\n        System.out.println(\"q -> quit\");\r\n        System.out.println(\"\\n\");\r\n\r\n    }\r\n\r\n    //MODIFIES: this\r\n    //EFFECTS: processes user command\r\n    private void processCommand(String command) {\r\n        if (command.equals(\"1\")) {\r\n            viewAllBooks();\r\n        } else if (command.equals(\"2\")) {\r\n            changeReadingStatus();\r\n        } else if (command.equals(\"a\")) {\r\n            addBookToBookshelf();\r\n        } else if (command.equals(\"r\")) {\r\n            removeBookFromBookshelf();\r\n        } else {\r\n            System.out.println(\"Selection not valid... Please try again!\");\r\n            String newCommand = input.next().toLowerCase();\r\n            processCommand(newCommand);\r\n\r\n        }\r\n    }\r\n\r\n    //EFFECTS: prints welcome message\r\n    private void displayWelcome() {\r\n        System.out.println(\"\\n\");\r\n        System.out.println(\"Welcome to the Bookshelf App!\");\r\n        System.out.println(\"-------------------------------\");\r\n    }\r\n\r\n    //EFFECTS: prints all book entries\r\n    private void viewAllBooks() {\r\n        List<Book> books = bookList.getAllBooks();\r\n        displayBooks(books);\r\n    }\r\n\r\n    //EFFECTS: displays all book entries\r\n    private void displayBooks(List<Book> books) {\r\n        if (books.size() == 0) {\r\n            System.out.println(\"There are no books. Add some!\");\r\n        } else {\r\n            System.out.println(\"Here are all of your books:\");\r\n            for (Book b : books) {\r\n                System.out.println(b.getTitle());\r\n            }\r\n        }\r\n    }\r\n\r\n    //TODO\r\n    private void viewBooksFromGenre() {\r\n    }\r\n\r\n    //TODO\r\n    private void viewBooksFromAuthor() {}\r\n\r\n    //REQUIRES: action is one of the given commands and the book is in the book list\r\n    //MODIFIES: this\r\n    //EFFECTS: changes reading status of a book\r\n    private void changeReadingStatus() {\r\n        System.out.println(\"Please enter the title of the book you want to change the status for\");\r\n\r\n        String title = input.next();\r\n        Book book = bookList.getBook(title);\r\n        if (!bookList.hasBook(title)) {\r\n            try {\r\n                throw new NoBookOnShelfException();\r\n            } catch (NoBookOnShelfException e) {\r\n                throw new RuntimeException(e);\r\n            }\r\n        } else {\r\n            displayingReadingStatus();\r\n            String command = input.next();\r\n            setBookStatus(book, command);\r\n            printReadingStatus(book);\r\n        }\r\n    }\r\n\r\n    //MODIFIES: this\r\n    //EFFECTS: helper method to change reading status of a book\r\n    // can change the name of this method - TODO\r\n    private void setBookStatus(Book book, String command) {\r\n        if (command.equals(\"1\")) {\r\n            book.setReadingStatus(ReadingStatus.WANT_TO_READ);\r\n        } else if (command.equals(\"2\")) {\r\n            book.setReadingStatus(ReadingStatus.READING);\r\n        } else if (command.equals(\"3\")) {\r\n            book.setReadingStatus(ReadingStatus.READ);\r\n        }\r\n    }\r\n\r\n    //EFFECTS: displays reading status options of a book\r\n    private void displayingReadingStatus() {\r\n        System.out.println(\"1 -> Want to Read\");\r\n        System.out.println(\"2 -> Reading\");\r\n        System.out.println(\"3 -> Read\");\r\n    }\r\n\r\n\r\n    //MODIFIES: this\r\n    //EFFECTS: adds book to bookshelf\r\n    private void addBookToBookshelf() {\r\n\r\n        System.out.println(\"Enter the title of the book: \");\r\n        String title = input.next();\r\n\r\n        System.out.println(\"Enter the author of the book: \");\r\n        String author = input.next();\r\n\r\n        System.out.println(\"Enter the genre of the book: \");\r\n        String genre = input.next();\r\n\r\n        Book newBook = new Book(title, author, genre);\r\n\r\n        bookList.addBook(newBook);\r\n\r\n        System.out.println(\"Voila! \" + newBook.getTitle() + \" has been added to the bookshelf!\");\r\n    }\r\n\r\n    //REQUIRES: book is on the shelf\r\n    //MODIFIES: this\r\n    //EFFECTS: removes book from bookshelf\r\n    private void removeBookFromBookshelf() {\r\n        System.out.println(\"Enter the title of the book you'd like to remove: \");\r\n\r\n        String title = input.next();\r\n\r\n        if (!bookList.hasBook(title)) {\r\n            try {\r\n                throw new NoBookOnShelfException();\r\n            } catch (NoBookOnShelfException e) {\r\n                System.out.println(\"\");\r\n            }\r\n        } else {\r\n            bookList.removeBook(title);\r\n            System.out.println(title + \" has been removed!\");\r\n        }\r\n\r\n    }\r\n\r\n    //EFFECTS: prints out reading status of selected book\r\n    private void printReadingStatus(Book selected) {\r\n        System.out.println(\"\\nThe reading status for \" + selected.getTitle()\r\n                + \" is now: \\n\" + selected.getReadingStatus());\r\n    }\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/ui/BookshelfApp.java b/src/main/ui/BookshelfApp.java
+--- a/src/main/ui/BookshelfApp.java	(revision 9631957d000094a992c6ff31be3f0d1788208d68)
++++ b/src/main/ui/BookshelfApp.java	(date 1676078044450)
+@@ -130,17 +130,12 @@
+ 
+         String title = input.next();
+         Book book = bookList.getBook(title);
+-        if (!bookList.hasBook(title)) {
+-            try {
+-                throw new NoBookOnShelfException();
+-            } catch (NoBookOnShelfException e) {
+-                throw new RuntimeException(e);
+-            }
+-        } else {
++        if (bookList.hasBook(title)) {
+             displayingReadingStatus();
+             String command = input.next();
+             setBookStatus(book, command);
+             printReadingStatus(book);
++
+         }
+     }
+ 
+@@ -197,7 +192,7 @@
+             try {
+                 throw new NoBookOnShelfException();
+             } catch (NoBookOnShelfException e) {
+-                System.out.println("");
++                System.out.println("Can't remove a book that isn't on the shelf!");
+             }
+         } else {
+             bookList.removeBook(title);

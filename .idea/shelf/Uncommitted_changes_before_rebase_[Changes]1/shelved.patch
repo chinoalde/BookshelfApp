@@ -1,0 +1,62 @@
+Index: src/main/ui/BookshelfApp.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ui;\r\n\r\nimport exceptions.NoBookOnShelfException;\r\nimport model.Book;\r\nimport model.BookList;\r\nimport model.ReadingStatus;\r\n\r\nimport java.util.List;\r\nimport java.util.Scanner;\r\n\r\n//Bookshelf application\r\n\r\n//references code from https://github.students.cs.ubc.ca/CPSC210/TellerApp\r\npublic class BookshelfApp {\r\n    private BookList bookList;\r\n    private Scanner input;\r\n\r\n    //EFFECTS: runs the bookshelf application\r\n    public BookshelfApp() {\r\n        runBookshelf();\r\n    }\r\n\r\n    //MODIFIES: this\r\n    //EFFECTS: processes user input\r\n    private void runBookshelf() {\r\n        boolean keepGoing = true;\r\n        String command;\r\n\r\n        init();\r\n        displayWelcome();\r\n\r\n        while (keepGoing) {\r\n            displayMenu();\r\n            command = input.next();\r\n            command = command.toLowerCase();\r\n\r\n            if (command.equals(\"q\")) {\r\n                keepGoing = false;\r\n            } else {\r\n                processCommand(command);\r\n            }\r\n        }\r\n\r\n        System.out.println(\"\\nSee you next time!\");\r\n    }\r\n\r\n    //MODIFIES: this\r\n    //EFFECTS: initializes books on bookshelf\r\n    private void init() {\r\n        Book b1 = new Book(\"Think Like a Monk\", \"Jay Shetty\", \"Self-help\");\r\n\r\n        bookList = new BookList();\r\n        bookList.addBook(b1);\r\n\r\n        input = new Scanner(System.in);\r\n        input.useDelimiter(\"\\n\");\r\n\r\n    }\r\n\r\n    //EFFECTS: displays menu of options to user\r\n    private void displayMenu() {\r\n        System.out.println(\"\\n\");\r\n        System.out.println(\"Please select one of the options below:\");\r\n        System.out.println(\"1 -> view all books\");\r\n        System.out.println(\"2 -> change reading status of a book\");\r\n        System.out.println(\"a -> add a new book\");\r\n        System.out.println(\"r -> remove an existing book\");\r\n        System.out.println(\"q -> quit\");\r\n        System.out.println(\"\\n\");\r\n\r\n    }\r\n\r\n    //MODIFIES: this\r\n    //EFFECTS: processes user command\r\n    private void processCommand(String command) {\r\n        String newCommand = command;\r\n        if (command.equals(\"1\")) {\r\n            viewAllBooks();\r\n        } else if (command.equals(\"2\")) {\r\n            changeReadingStatus();\r\n        } else if (command.equals(\"a\")) {\r\n            addBookToBookshelf();\r\n        } else if (command.equals(\"r\")) {\r\n            removeBookFromBookshelf();\r\n        } else {\r\n            System.out.println(\"Selection not valid... Please try again!\");\r\n            newCommand = input.next().toLowerCase();\r\n            processCommand(newCommand);\r\n\r\n        }\r\n    }\r\n\r\n    //EFFECTS: prints welcome message\r\n    private void displayWelcome() {\r\n        System.out.println(\"\\n\");\r\n        System.out.println(\"Welcome to the Bookshelf App!\");\r\n        System.out.println(\"-------------------------------\");\r\n    }\r\n\r\n    //EFFECTS: prints all book entries\r\n    private void viewAllBooks() {\r\n        List<Book> books = bookList.getAllBooks();\r\n        displayBooks(books);\r\n\r\n\r\n\r\n    }\r\n\r\n    //EFFECTS: displays all book entries\r\n    private void displayBooks(List<Book> books) {\r\n        if (books.size() == 0) {\r\n            System.out.println(\"There are no books. Add some!\");\r\n        } else {\r\n            System.out.println(\"Here are all of your books:\");\r\n            for (Book b : books) {\r\n                System.out.println(b.getTitle());\r\n            }\r\n        }\r\n    }\r\n\r\n    //TODO\r\n    private void viewBooksFromGenre() {\r\n    }\r\n\r\n    //TODO\r\n    private void viewBooksFromAuthor() {}\r\n\r\n    //REQUIRES: action is one of the given commands and the book is in the book list\r\n    //MODIFIES: this\r\n    //EFFECTS: changes reading status of a book\r\n    private void changeReadingStatus() {\r\n        System.out.println(\"Please enter the title of the book you want to change the status for\");\r\n\r\n        String title = input.next();\r\n        Book book = bookList.getBook(title);\r\n        if (!bookList.hasBook(title)) {\r\n            try {\r\n                throw new NoBookOnShelfException();\r\n            } catch (NoBookOnShelfException e) {\r\n                System.out.println(\"The book entered is not on the shelf. Please try again!\");\r\n            }\r\n        } else {\r\n            displayingReadingStatus();\r\n            String command = input.next();\r\n            setBookStatus(book, command);\r\n            printReadingStatus(book);\r\n        }\r\n    }\r\n\r\n    //MODIFIES: this\r\n    //EFFECTS: helper method to change reading status of a book\r\n    // can change the name of this method - TODO\r\n    private void setBookStatus(Book book, String command) {\r\n        if (command.equals(\"1\")) {\r\n            book.setReadingStatus(ReadingStatus.WANT_TO_READ);\r\n        } else if (command.equals(\"2\")) {\r\n            book.setReadingStatus(ReadingStatus.READING);\r\n        } else if (command.equals(\"3\")) {\r\n            book.setReadingStatus(ReadingStatus.READ);\r\n        }\r\n    }\r\n\r\n    //EFFECTS: displays reading status options of a book\r\n    private void displayingReadingStatus() {\r\n        System.out.println(\"1 -> Want to Read\");\r\n        System.out.println(\"2 -> Reading\");\r\n        System.out.println(\"3 -> Read\");\r\n    }\r\n\r\n\r\n    //MODIFIES: this\r\n    //EFFECTS: adds book to bookshelf\r\n    private void addBookToBookshelf() {\r\n\r\n        System.out.println(\"Enter the title of the book: \");\r\n        String title = input.next();\r\n\r\n        System.out.println(\"Enter the author of the book: \");\r\n        String author = input.next();\r\n\r\n        System.out.println(\"Enter the genre of the book: \");\r\n        String genre = input.next();\r\n\r\n        Book newBook = new Book(title, author, genre);\r\n\r\n        bookList.addBook(newBook);\r\n\r\n        System.out.println(\"Voila! \" + newBook.getTitle() + \" has been added to the bookshelf!\");\r\n    }\r\n\r\n    //REQUIRES: book is on the shelf\r\n    //MODIFIES: this\r\n    //EFFECTS: removes book from bookshelf\r\n    private void removeBookFromBookshelf() {\r\n        System.out.println(\"Enter the title of the book you'd like to remove: \");\r\n\r\n        String title = input.next();\r\n\r\n        if (!bookList.hasBook(title)) {\r\n            try {\r\n                throw new NoBookOnShelfException();\r\n            } catch (NoBookOnShelfException e) {\r\n                System.out.println(\"Can't remove a book that isn't there!\");\r\n            }\r\n        } else {\r\n            bookList.removeBook(title);\r\n            System.out.println(title + \" has been removed!\");\r\n        }\r\n\r\n    }\r\n\r\n    //EFFECTS: prints out reading status of selected book\r\n    private void printReadingStatus(Book selected) {\r\n        System.out.println(\"\\nThe reading status for \" + selected.getTitle()\r\n                + \" is now: \\n\" + selected.getReadingStatus());\r\n    }\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/ui/BookshelfApp.java b/src/main/ui/BookshelfApp.java
+--- a/src/main/ui/BookshelfApp.java	(revision 297f94f7f261507c12b742d1aec970196385be6e)
++++ b/src/main/ui/BookshelfApp.java	(date 1676067238117)
+@@ -1,5 +1,6 @@
+ package ui;
+ 
++
+ import exceptions.NoBookOnShelfException;
+ import model.Book;
+ import model.BookList;
+@@ -73,7 +74,6 @@
+     //MODIFIES: this
+     //EFFECTS: processes user command
+     private void processCommand(String command) {
+-        String newCommand = command;
+         if (command.equals("1")) {
+             viewAllBooks();
+         } else if (command.equals("2")) {
+@@ -84,7 +84,7 @@
+             removeBookFromBookshelf();
+         } else {
+             System.out.println("Selection not valid... Please try again!");
+-            newCommand = input.next().toLowerCase();
++            String newCommand = input.next().toLowerCase();
+             processCommand(newCommand);
+ 
+         }
+@@ -101,9 +101,6 @@
+     private void viewAllBooks() {
+         List<Book> books = bookList.getAllBooks();
+         displayBooks(books);
+-
+-
+-
+     }
+ 
+     //EFFECTS: displays all book entries
+@@ -137,7 +134,7 @@
+             try {
+                 throw new NoBookOnShelfException();
+             } catch (NoBookOnShelfException e) {
+-                System.out.println("The book entered is not on the shelf. Please try again!");
++                throw new RuntimeException(e);
+             }
+         } else {
+             displayingReadingStatus();
+@@ -200,7 +197,7 @@
+             try {
+                 throw new NoBookOnShelfException();
+             } catch (NoBookOnShelfException e) {
+-                System.out.println("Can't remove a book that isn't there!");
++                System.out.println();
+             }
+         } else {
+             bookList.removeBook(title);
