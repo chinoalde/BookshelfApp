@@ -24,6 +24,7 @@ will allow individuals to keep track of their bookshelf, and allow peers to see 
 - As a user, I want to be able to **VIEW the list of books** in my *bookshelf*.
 - As a user, I want to be able to **MARK a book as read** in my *bookshelf*.
 - As a user, I want to be able to **REMOVE a book** from my *bookshelf*.
-
+- As a user, I want to be able to **SAVE the *bookshelf*** to a file.
+- As a user, I want to be able to **LOAD my *bookshelf*** from a file
 
 
