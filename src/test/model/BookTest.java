@@ -9,7 +9,7 @@ class BookTest {
 
     @BeforeEach
     public void runBefore() {
-        testBook = new Book("Book", "Chino","Non-fiction");
+        testBook = new Book("Book", "Chino","Non-fiction", 10);
     }
 
     @Test
@@ -23,6 +23,7 @@ class BookTest {
     public void testGetReadingStatus() {
         assertEquals("Want to Read", testBook.getReadingStatus());
     }
+
 
     @Test
     public void testSetReadingStatus() {

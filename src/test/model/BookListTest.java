@@ -11,9 +11,9 @@ public class BookListTest {
     @BeforeEach
     public void runBefore() {
         testBooks = new BookList();
-        b1 = new Book("Percy Jackson", "Rick Riordan", "Fantasy");
-        b2 = new Book("1984", "George Orwell", "Fiction");
-        b3 = new Book("Think Like a Monk", "Jay Shetty", "Self-help");
+        b1 = new Book("Percy Jackson", "Rick Riordan", "Fantasy", 10);
+        b2 = new Book("1984", "George Orwell", "Fiction", 8);
+        b3 = new Book("Think Like a Monk", "Jay Shetty", "Self-help", 9);
     }
 
     @Test

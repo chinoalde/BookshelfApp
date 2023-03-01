@@ -1,17 +1,24 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 // represents a book with a title, author, genre, and reading status
-public class Book {
+public class Book implements Writable {
     private final String title;
     private final String author;
     private final String genre;
+    private int rating;
     private ReadingStatus status;
 
 
-    public Book(String bookTitle, String bookAuthor, String genre) {
+    //REQUIRES: rating is between 1 and 10
+    public Book(String bookTitle, String bookAuthor, String genre, int rating) {
         this.title = bookTitle;
         this.author = bookAuthor;
         this.genre = genre;
+        this.rating = rating;
         this.status = ReadingStatus.WANT_TO_READ;
     }
 
@@ -41,6 +48,20 @@ public class Book {
         return genre;
     }
 
+    //EFFECTS: returns rating
+    public int getRating() {
+        return rating;
+    }
 
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("title", title);
+        json.put("author", author);
+        json.put("genre", genre);
+        json.put("rating", rating);
+
+        return json;
+    }
 }

@@ -4,7 +4,11 @@ package ui;
 import model.Book;
 import model.BookList;
 import model.ReadingStatus;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,9 +17,14 @@ import java.util.Scanner;
 public class BookshelfApp {
     private BookList bookList;
     private Scanner input;
+    private static final String JSON_STORE = "./data";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     //EFFECTS: runs the bookshelf application
-    public BookshelfApp() {
+    public BookshelfApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        bookList = new BookList();
         runBookshelf();
     }
 
@@ -46,7 +55,7 @@ public class BookshelfApp {
     //MODIFIES: this
     //EFFECTS: initializes books on bookshelf
     private void init() {
-        Book b1 = new Book("Think Like a Monk", "Jay Shetty", "Self-help");
+        Book b1 = new Book("Think Like a Monk", "Jay Shetty", "Self-help", 10);
 
         bookList = new BookList();
         bookList.addBook(b1);
@@ -175,7 +184,10 @@ public class BookshelfApp {
         System.out.println("Enter the genre of the book: ");
         String genre = input.next();
 
-        Book newBook = new Book(title, author, genre);
+        System.out.println("Enter the rating of the book: ");
+        int rating = input.nextInt();
+
+        Book newBook = new Book(title, author, genre, rating);
 
         bookList.addBook(newBook);
 
