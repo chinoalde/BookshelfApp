@@ -73,7 +73,7 @@ public class BookList implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("book", booksToJson());
+        json.put("books", booksToJson());
         return json;
     }
 

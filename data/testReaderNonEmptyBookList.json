@@ -1,0 +1,20 @@
+{
+  "books": [
+    {
+      "reading status": "Want to Read",
+      "rating": 10,
+      "genre": "Self Help",
+      "author": "Jay Shetty",
+      "title":  "Think Like a Monk"
+    },
+    {
+      "reading status": "Want to Read",
+      "rating": 10,
+      "genre": "Fantasy",
+      "author": "George Orwell",
+      "title":  "1984"
+    }
+  ]
+
+}
+

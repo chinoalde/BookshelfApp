@@ -42,7 +42,7 @@ public class JsonReader {
 
     //EFFECTS: parses booklist from JSON object and returns it
     private BookList parseBookList(JSONObject jsonObject) {
-        String title = jsonObject.getString("title");
+//        String title = jsonObject.getString("title");
         BookList bl = new BookList();
         addBooks(bl, jsonObject);
         return bl;
@@ -65,6 +65,7 @@ public class JsonReader {
         String author = jsonObject.getString("author");
         String genre = jsonObject.getString("genre");
         int rating = jsonObject.getInt("rating");
+
 
         Book b = new Book(title, author, genre, rating);
         bl.addBook(b);
