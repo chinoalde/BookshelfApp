@@ -1,0 +1,14 @@
+{"books": [
+    {
+        "author": "Jay Shetty",
+        "genre": "Self-help",
+        "rating": 10,
+        "title": "Think Like a Monk"
+    },
+    {
+        "author": "George Orwell",
+        "genre": "Fiction",
+        "rating": 10,
+        "title": "1984"
+    }
+]}

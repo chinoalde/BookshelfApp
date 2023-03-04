@@ -17,7 +17,8 @@ import java.util.Scanner;
 public class BookshelfApp {
     private BookList bookList;
     private Scanner input;
-    private static final String JSON_STORE = "./data";
+
+    private static final String JSON_STORE = "./data/booklist.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
@@ -25,6 +26,9 @@ public class BookshelfApp {
     public BookshelfApp() throws FileNotFoundException {
         input = new Scanner(System.in);
         bookList = new BookList();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
         runBookshelf();
     }
 
@@ -33,6 +37,7 @@ public class BookshelfApp {
     private void runBookshelf() {
         boolean keepGoing = true;
         String command;
+        input = new Scanner(System.in);
 
         init();
         displayWelcome();
@@ -68,12 +73,14 @@ public class BookshelfApp {
     //EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\n");
-        System.out.println("Please select one of the options below:");
-        System.out.println("1 -> view all books");
-        System.out.println("2 -> change reading status of a book");
-        System.out.println("a -> add a new book");
-        System.out.println("r -> remove an existing book");
-        System.out.println("q -> quit");
+        System.out.println("\tPlease select one of the options below:");
+        System.out.println("\t1 -> view all books");
+        System.out.println("\t2 -> change reading status of a book");
+        System.out.println("\ta -> add a new book");
+        System.out.println("\tr -> remove an existing book");
+        System.out.println("\ts -> save books to file");
+        System.out.println("\tl -> load books from file");
+        System.out.println("\tq -> quit");
         System.out.println("\n");
 
     }
@@ -89,6 +96,11 @@ public class BookshelfApp {
             addBookToBookshelf();
         } else if (command.equals("r")) {
             removeBookFromBookshelf();
+        } else if (command.equals("s")) {
+            saveBookShelf();
+        } else if (command.equals("l")) {
+            loadBookShelf();
+
         } else {
             System.out.println("Selection not valid... Please try again!");
             String newCommand = input.next().toLowerCase();
@@ -97,11 +109,32 @@ public class BookshelfApp {
         }
     }
 
+    private void saveBookShelf() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(bookList);
+            jsonWriter.close();
+            System.out.println("Saved books to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    private void loadBookShelf() {
+        try {
+            bookList = jsonReader.read();
+            System.out.println("Loaded books from: " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+
+    }
+
     //EFFECTS: prints welcome message
     private void displayWelcome() {
         System.out.println("\n");
-        System.out.println("Welcome to the Bookshelf App!");
-        System.out.println("-------------------------------");
+        System.out.println("\tWelcome to the Bookshelf App!");
+        System.out.println("\t-------------------------------");
     }
 
     //EFFECTS: prints all book entries
@@ -198,7 +231,7 @@ public class BookshelfApp {
     //MODIFIES: this
     //EFFECTS: removes book from bookshelf
     private void removeBookFromBookshelf() {
-        System.out.println("Enter the title of the book you'd like to remove: ");
+        System.out.println("\tEnter the title of the book you'd like to remove: ");
 
         String title = input.next();
 
