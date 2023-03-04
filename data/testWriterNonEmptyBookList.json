@@ -1,0 +1,20 @@
+{"books": [
+    {
+        "author": "Hanya Yanagihara",
+        "genre": "Fiction",
+        "rating": 10,
+        "title": "A Little Life"
+    },
+    {
+        "author": "George Orwell",
+        "genre": "Fantasy",
+        "rating": 1,
+        "title": "1984"
+    },
+    {
+        "author": "William Golding",
+        "genre": "Fantasy",
+        "rating": 7,
+        "title": "Lord of the Flies"
+    }
+]}
