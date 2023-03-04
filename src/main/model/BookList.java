@@ -35,6 +35,33 @@ public class BookList implements Writable {
         }
     }
 
+    //REQUIRES: books is not empty
+    //EFFECTS: gets books with the matching genre from the list of books and returns it
+    public List<Book> getBooksFromGenre(String genre) {
+        List<Book> booksFromGenre = new ArrayList<>();
+
+        for (Book b: books) {
+            if (b.getGenre().equals(genre)) {
+                booksFromGenre.add(b);
+            }
+        }
+        return booksFromGenre;
+    }
+
+    //REQUIRES: books is not empty
+    //EFFECTS: gets books written by matching author from list of books and returns it
+    public List<Book> getBooksByAuthor(String author) {
+        List<Book> booksFromAuthor = new ArrayList<>();
+
+        for (Book b: books) {
+            if (b.getAuthor().equals(author)) {
+                booksFromAuthor.add(b);
+            }
+        }
+        return booksFromAuthor;
+
+    }
+
     //EFFECTS: returns the number of books in the list
     public int bookListSize() {
         return books.size();
@@ -49,7 +76,6 @@ public class BookList implements Writable {
             }
         }
         return null;
-
     }
 
     //REQUIRES: books is not empty

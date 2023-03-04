@@ -75,7 +75,9 @@ public class BookshelfApp {
         System.out.println("\n");
         System.out.println("\tPlease select one of the options below:");
         System.out.println("\t1 -> view all books");
-        System.out.println("\t2 -> change reading status of a book");
+        System.out.println("\t2 -> view books from given genre");
+        System.out.println("\t3 -> view books by author");
+        System.out.println("\t4 -> change reading status of a book");
         System.out.println("\ta -> add a new book");
         System.out.println("\tr -> remove an existing book");
         System.out.println("\ts -> save books to file");
@@ -91,6 +93,10 @@ public class BookshelfApp {
         if (command.equals("1")) {
             viewAllBooks();
         } else if (command.equals("2")) {
+            viewBooksFromGenre();
+        } else if (command.equals("3")) {
+            viewBooksByAuthor();
+        } else if (command.equals("4")) {
             changeReadingStatus();
         } else if (command.equals("a")) {
             addBookToBookshelf();
@@ -140,6 +146,7 @@ public class BookshelfApp {
     //EFFECTS: prints all book entries
     private void viewAllBooks() {
         List<Book> books = bookList.getAllBooks();
+        System.out.println("Here are all of your books:");
         displayBooks(books);
     }
 
@@ -148,19 +155,34 @@ public class BookshelfApp {
         if (books.size() == 0) {
             System.out.println("There are no books. Add some!");
         } else {
-            System.out.println("Here are all of your books:");
+//            System.out.println("Here are all of your books:");
             for (Book b : books) {
                 System.out.println(b.getTitle());
             }
         }
     }
 
-    //TODO
+
     private void viewBooksFromGenre() {
+        String genre;
+        List<Book> books;
+
+        System.out.println("Enter a genre: ");
+        genre = input.next();
+        books = bookList.getBooksFromGenre(genre);
+        System.out.println("Here are your books from: " + genre);
+        displayBooks(books);
     }
 
-    //TODO
-    private void viewBooksFromAuthor() {
+    private void viewBooksByAuthor() {
+        String author;
+        List<Book> books;
+
+        System.out.println("Enter a genre: ");
+        author = input.next();
+        books = bookList.getBooksByAuthor(author);
+        System.out.println("Here are your books from: " + author);
+        displayBooks(books);
     }
 
     //REQUIRES: action is one of the given commands and the book is in the book list

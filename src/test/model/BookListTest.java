@@ -3,17 +3,21 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BookListTest {
     private BookList testBooks;
-    private Book b1, b2, b3;
+    private Book b1, b2, b3, b4;
     @BeforeEach
     public void runBefore() {
         testBooks = new BookList();
-        b1 = new Book("Percy Jackson", "Rick Riordan", "Fantasy", 10);
+        b1 = new Book("Percy Jackson", "Chino", "Fantasy", 10);
         b2 = new Book("1984", "George Orwell", "Fiction", 8);
         b3 = new Book("Think Like a Monk", "Jay Shetty", "Self-help", 9);
+        b4 = new Book("A Little Life", "Chino", "Fiction", 10);
     }
 
     @Test
@@ -68,6 +72,32 @@ public class BookListTest {
 
         //book is not in the book set
         assertEquals(null, testBooks.getBook("not here"));
+    }
+
+    @Test
+    public void testGetBooksFromGenre() {
+        testBooks.addBook(b1);
+        testBooks.addBook(b2);
+        testBooks.addBook(b3);
+        testBooks.addBook(b4);
+
+        List<Book> allBooksFiction = testBooks.getBooksFromGenre("Fiction");
+        assertEquals(2, allBooksFiction.size());
+        assertEquals(b2, allBooksFiction.get(0));
+        assertEquals(b4, allBooksFiction.get(1));
+    }
+
+    @Test
+    public void testGetBooksFromAuthor() {
+        testBooks.addBook(b1);
+        testBooks.addBook(b2);
+        testBooks.addBook(b3);
+        testBooks.addBook(b4);
+
+        List<Book> allBooksByChino= testBooks.getBooksByAuthor("Chino");
+        assertEquals(2, allBooksByChino.size());
+        assertEquals(b1, allBooksByChino.get(0));
+        assertEquals(b4, allBooksByChino.get(1));
     }
 
     @Test
