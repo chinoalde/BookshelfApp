@@ -253,7 +253,7 @@ public class BookshelfApp {
     //MODIFIES: this
     //EFFECTS: removes book from bookshelf
     private void removeBookFromBookshelf() {
-        System.out.println("\tEnter the title of the book you'd like to remove: ");
+        System.out.println("Enter the title of the book you'd like to remove: ");
 
         String title = input.next();
 
