@@ -1,8 +1,8 @@
 package model;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
+
 
 // represents a book with a title, author, genre, and reading status
 public class Book implements Writable {
@@ -61,7 +61,10 @@ public class Book implements Writable {
         json.put("author", author);
         json.put("genre", genre);
         json.put("rating", rating);
+        json.put("reading status", status);
 
         return json;
     }
+
+
 }

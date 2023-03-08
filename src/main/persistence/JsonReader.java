@@ -59,7 +59,7 @@ public class JsonReader {
     }
 
     //MODIFIES: bl
-    //EFFECTS: parses book from JSON object and adds it to workroom
+    //EFFECTS: parses book from JSON object and adds it to booklist
     private void addBook(BookList bl, JSONObject jsonObject) {
         String title = jsonObject.getString("title");
         String author = jsonObject.getString("author");

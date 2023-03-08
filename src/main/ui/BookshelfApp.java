@@ -164,24 +164,20 @@ public class BookshelfApp {
 
 
     private void viewBooksFromGenre() {
-        String genre;
+        System.out.println("Please enter a genre: ");
         List<Book> books;
-
-        System.out.println("Enter a genre: ");
-        genre = input.next();
+        String genre = input.next();
         books = bookList.getBooksFromGenre(genre);
-        System.out.println("Here are your books from: " + genre);
+        System.out.println("\nHere are your books from the genre: " + genre);
         displayBooks(books);
     }
 
     private void viewBooksByAuthor() {
-        String author;
+        System.out.println("Please enter a author: ");
         List<Book> books;
-
-        System.out.println("Enter a genre: ");
-        author = input.next();
+        String author = input.next();
         books = bookList.getBooksByAuthor(author);
-        System.out.println("Here are your books from: " + author);
+        System.out.println("\nHere are your books by: " + author);
         displayBooks(books);
     }
 
