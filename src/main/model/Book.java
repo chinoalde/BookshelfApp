@@ -22,6 +22,16 @@ public class Book implements Writable {
         this.status = ReadingStatus.WANT_TO_READ;
     }
 
+    public Book(String bookTitle, String bookAuthor, String genre, int rating, ReadingStatus status) {
+        this.title = bookTitle;
+        this.author = bookAuthor;
+        this.genre = genre;
+        this.rating = rating;
+        this.status = status;
+    }
+
+
+
     //MODIFIES: this
     //EFFECTS: updates reading status of the book
     public void setReadingStatus(ReadingStatus status) {

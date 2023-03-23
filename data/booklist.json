@@ -1,16 +1,7 @@
-{"books": [
-    {
-        "author": "Jay Shetty",
-        "reading status": "WANT_TO_READ",
-        "genre": "Self-help",
-        "rating": 10,
-        "title": "Think Like a Monk"
-    },
-    {
-        "author": "Steve Wolfman",
-        "reading status": "READING",
-        "genre": "Science",
-        "rating": 10,
-        "title": "CPSC 210"
-    }
-]}
+{"books": [{
+    "author": "Steve Wolfman",
+    "reading status": "WANT_TO_READ",
+    "genre": "Science",
+    "rating": 10,
+    "title": "CPSC 210 "
+}]}
