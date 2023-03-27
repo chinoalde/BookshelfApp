@@ -100,7 +100,7 @@ public class Book implements Writable {
     @Override
     //formats Book object information to string
     public String toString() {
-        return title + " by " + author + "     Genre: " + genre + "     Rating: " + rating + "/10 "
+        return title + " by " + author + "     Genre: " + genre + "     Rating: " + rating + "/10"
                 + "     Reading Status: " + status.getStatus();
 
 

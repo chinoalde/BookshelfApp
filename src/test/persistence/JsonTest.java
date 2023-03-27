@@ -12,6 +12,6 @@ public class JsonTest {
         assertEquals(author, book.getAuthor());
         assertEquals(genre, book.getGenre());
         assertEquals(rating, book.getRating());
-        assertEquals(readingStatus.getStatus(), book.getReadingStatus());
+        assertEquals(readingStatus.getStatus(), book.getReadingStatus().getStatus());
     }
 }

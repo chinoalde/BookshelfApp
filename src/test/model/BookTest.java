@@ -2,6 +2,7 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BookTest {
@@ -9,7 +10,7 @@ class BookTest {
 
     @BeforeEach
     public void runBefore() {
-        testBook = new Book("Book", "Chino","Non-fiction", 10);
+        testBook = new Book("Book", "Chino", "Non-fiction", 10);
         testBook2 = new Book("1984", "George Orwell", "Fiction", 6);
         testBook3 = new Book("CPSC 210", "Steve Wolfman", "Science", 10,
                 ReadingStatus.READING);
@@ -48,7 +49,7 @@ class BookTest {
 
     @Test
     public void testToString() {
-        assertEquals("1984 by George Orwell, Genre: Fiction, Rating: 6/10 , Reading Status: WANT_TO_READ",
+        assertEquals("1984 by George Orwell     Genre: Fiction     Rating: 6/10     Reading Status: Want to Read",
                 testBook2.toString());
     }
 
@@ -66,13 +67,17 @@ class BookTest {
         target = new Book("Book", "Chino", "Non-fiction", 1);
         assertFalse(testBook.equals(target));
 
+        target = new Book("Book", "Chino", "fiction", 1);
+        assertFalse(testBook.equals(target));
+
+
         target = new Book("Book", "Chino", "Non-fiction", 10, ReadingStatus.READ);
         assertFalse(testBook.equals(target));
     }
 
     @Test
     public void testHashCode() {
-        Book b1 = new Book("Book", "Chino","Non-fiction", 10);
+        Book b1 = new Book("Book", "Chino", "Non-fiction", 10);
 
         assertTrue(b1.hashCode() == testBook.hashCode());
     }

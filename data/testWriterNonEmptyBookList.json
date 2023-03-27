@@ -1,18 +1,21 @@
 {"books": [
     {
         "author": "Hanya Yanagihara",
+        "reading status": "WANT_TO_READ",
         "genre": "Fiction",
         "rating": 10,
         "title": "A Little Life"
     },
     {
         "author": "George Orwell",
+        "reading status": "WANT_TO_READ",
         "genre": "Fantasy",
         "rating": 1,
         "title": "1984"
     },
     {
         "author": "William Golding",
+        "reading status": "WANT_TO_READ",
         "genre": "Fantasy",
         "rating": 7,
         "title": "Lord of the Flies"
