@@ -66,7 +66,7 @@ public class BookshelfAppGUI {
         public AddBookPanel(int width, int height, BookList bookList, CardLayout cards, JPanel cardLayoutPanel) {
             super(width, height, bookList, cards, cardLayoutPanel);
             this.submit = new JButton("add book");
-            this.submit = new JButton("add anime");
+            this.submit = new JButton("add book");
             this.submit.setBounds(160, 600, 100, 50);
             this.submit.setFont(new Font("Monospaced", Font.PLAIN, 12));
 

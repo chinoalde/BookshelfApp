@@ -1,16 +1,7 @@
-{"books": [
-    {
-        "author": "Steve Wolfman",
-        "reading status": "WANT_TO_READ",
-        "genre": "Science",
-        "rating": 10,
-        "title": "CPSC 210"
-    },
-    {
-        "author": "St. Augustine",
-        "reading status": "WANT_TO_READ",
-        "genre": "Self-help",
-        "rating": 10,
-        "title": "Confessions"
-    }
-]}
+{"books": [{
+    "author": "St. Augustine",
+    "reading status": "WANT_TO_READ",
+    "genre": "Self-help",
+    "rating": 10,
+    "title": "Confessions"
+}]}
