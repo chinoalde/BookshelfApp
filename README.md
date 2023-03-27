@@ -27,4 +27,12 @@ will allow individuals to keep track of their bookshelf, and allow peers to see 
 - As a user, I want to be able to **SAVE the *bookshelf*** to a file.
 - As a user, I want to be able to **LOAD my *bookshelf*** from a file
 
+### Instructions for Grader
+1. Load saved data by pressing yes when prompted by clicking the start button.
+2. add a new book entry to the bookshelf by clicking the "add new book" button and filling in the book's information.
+3. Once done adding books, click the save file button at the bottom left of the application.
+4. After saving, click quit and then "yes" when prompted to override saved data.
 
+- visual component can be found on the starting page with the anime reading gif as well as the file icon when prompted to 
+load saved data.
+- 

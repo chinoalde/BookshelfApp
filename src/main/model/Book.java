@@ -83,9 +83,6 @@ public class Book implements Writable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
 
         Book book = (Book) o;
         return rating == book.rating

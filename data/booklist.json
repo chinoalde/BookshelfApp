@@ -1,7 +1,16 @@
-{"books": [{
-    "author": "St. Augustine",
-    "reading status": "WANT_TO_READ",
-    "genre": "Self-help",
-    "rating": 10,
-    "title": "Confessions"
-}]}
+{"books": [
+    {
+        "author": "St. Augustine",
+        "reading status": "WANT_TO_READ",
+        "genre": "Self-help",
+        "rating": 10,
+        "title": "Confessions"
+    },
+    {
+        "author": "Jay Shetty",
+        "reading status": "WANT_TO_READ",
+        "genre": "Self-help",
+        "rating": 10,
+        "title": "Think Like a Monk"
+    }
+]}
