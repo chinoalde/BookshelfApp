@@ -3,6 +3,8 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.util.Objects;
+
 
 // represents a book with a title, author, genre, and reading status
 public class Book implements Writable {
@@ -29,7 +31,6 @@ public class Book implements Writable {
         this.rating = rating;
         this.status = status;
     }
-
 
 
     //MODIFIES: this
@@ -77,4 +78,25 @@ public class Book implements Writable {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Book book = (Book) o;
+        return rating == book.rating
+                && Objects.equals(title, book.title)
+                && Objects.equals(author, book.author)
+                && Objects.equals(genre, book.genre)
+                && status == book.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, author, genre, rating, status);
+    }
 }

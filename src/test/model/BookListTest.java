@@ -36,7 +36,7 @@ public class BookListTest {
 
         //list is empty
         assertEquals(0, testBooks.bookListSize());
-        testBooks.removeBook(b1.getTitle());
+        testBooks.removeBook(b1);
 
         testBooks.addBook(b1);
         testBooks.addBook(b2);
@@ -44,14 +44,14 @@ public class BookListTest {
 
         //book is in the list and can be removed
         assertEquals(3, testBooks.bookListSize());
-        testBooks.removeBook("Percy Jackson");
+        testBooks.removeBook(b1);
         assertEquals(2, testBooks.bookListSize());
         assertEquals(b2.getTitle(), testBooks.getAllBooks().get(0).getTitle());
 
         testBooks.addBook(b1);
 
         //book is not in the list
-        testBooks.removeBook("book is not here");
+        testBooks.removeBook(b4);
         assertEquals(3, testBooks.bookListSize());
     }
 

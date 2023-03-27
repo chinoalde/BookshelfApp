@@ -26,13 +26,8 @@ public class BookList implements Writable {
     //MODIFIES: this
     //EFFECTS: removes the book with the matching
     //         title from the list of books
-    public void removeBook(String title) {
-        for (Book b: books) {
-            if (b.getTitle().equals(title)) {
-                books.remove(b);
-                break;
-            }
-        }
+    public void removeBook(Book target) {
+        books.remove(target);
     }
 
     //REQUIRES: books is not empty
@@ -61,6 +56,22 @@ public class BookList implements Writable {
         return booksFromAuthor;
 
     }
+
+    //REQUIRES: books is not empty
+    //EFFECTS: gets books written by matching author from list of books and returns it
+    public List<Book> getBooksByReadingStatus(ReadingStatus status) {
+        List<Book> booksByReadingStatus = new ArrayList<>();
+
+        for (Book b: books) {
+            if (b.getReadingStatus().equals(status)) {
+                booksByReadingStatus.add(b);
+            }
+        }
+        return booksByReadingStatus;
+
+    }
+
+
 
     //EFFECTS: returns the number of books in the list
     public int bookListSize() {

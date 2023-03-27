@@ -8,29 +8,28 @@ import java.awt.*;
 import java.util.List;
 
 public class ShowBooksPanel extends JPanel {
-    protected JList<String> jlist;
-    protected DefaultListModel<String> model;
+    protected JList<Book> jlist;
+    protected DefaultListModel<Book> model;
     protected List<Book> books;
     protected JScrollPane scroll;
     protected JButton home;
 
     public ShowBooksPanel(int width, int height, BookList bookList,
                           CardLayout cards, JPanel cardLayoutPanel) {
-        this.setBackground(Color.green);
+        this.setBackground(Color.WHITE);
         this.setBounds((int) (width * 0.025), (int) (height * 0.05), (int) (width * 0.95), (int) (height * 0.9));
         this.setBorder(BorderFactory.createEmptyBorder());
         this.setLayout(null);
 
         this.jlist = new JList<>();
         this.model = new DefaultListModel<>();
-
         this.books = bookList.getAllBooks();
         this.scroll = new JScrollPane(jlist, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         this.home = new JButton("home");
         this.home.setBounds(160, 650, 100, 50);
         this.home.setFont(new Font("Monospaced", Font.PLAIN, 12));
-        this.home.addActionListener((e -> cards.show(cardLayoutPanel, "Home Page")));
+        this.home.addActionListener(e -> cards.show(cardLayoutPanel, "home page"));
 
         loadList();
 
@@ -44,21 +43,20 @@ public class ShowBooksPanel extends JPanel {
 
     }
 
-
-    //MODIFIES: model
-    //EFFECTS: fills model with book titles
+    // MODIFIES: model
+    // EFFECTS: populates the model with expenses
     public void loadList() {
-        for (Book b : books) {
-            model.addElement(b.getTitle());
+        for (Book e : books) {
+            model.addElement(e);
         }
     }
 
-    //MODIFIES: model
-    //EFFECTS: resets and fills model with new books after clearing
-    public void refresh(List<Book> newBooks) {
+    // MODIFIES: model
+    // EFFECTS: resets and populates the model with new expenses (after filtering)
+    public void refresh(List<Book> newExpenses) {
         model.clear();
-        for (Book b : newBooks) {
-            model.addElement(b.getTitle());
+        for (Book e : newExpenses) {
+            model.addElement(e);
         }
     }
 }

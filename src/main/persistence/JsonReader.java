@@ -73,16 +73,15 @@ public class JsonReader {
 //    }
 
     //MODIFIES: bl
-    //EFFECTS: parses book from JSON objects and adds
+    //EFFECTS: parses book from JSON objects and adds it to book list
     private void addBook(BookList bl, JSONObject jsonObject) {
         String title = jsonObject.getString("title");
         String author = jsonObject.getString("author");
         String genre = jsonObject.getString("genre");
         int rating = jsonObject.getInt("rating");
-        ReadingStatus status = jsonObject.getEnum(ReadingStatus.class, "status");
 
 
-        Book b = new Book(title, author, genre, rating, status);
+        Book b = new Book(title, author, genre, rating);
         bl.addBook(b);
     }
 

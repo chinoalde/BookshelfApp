@@ -254,7 +254,8 @@ public class BookshelfApp {
         String title = input.next();
 
         if (bookList.hasBook(title)) {
-            bookList.removeBook(title);
+            Book target = bookList.getBook(title);
+            bookList.removeBook(target);
             System.out.println(title + " has been removed!");
         } else {
             System.out.println("Can't remove a book that isn't on the shelf! Please try again");
