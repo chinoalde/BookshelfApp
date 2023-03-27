@@ -11,13 +11,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BookListTest {
     private BookList testBooks;
     private Book b1, b2, b3, b4;
+
     @BeforeEach
     public void runBefore() {
         testBooks = new BookList();
-        b1 = new Book("Percy Jackson", "Chino", "Fantasy", 10);
-        b2 = new Book("1984", "George Orwell", "Fiction", 8);
-        b3 = new Book("Think Like a Monk", "Jay Shetty", "Self-help", 9);
-        b4 = new Book("A Little Life", "Chino", "Fiction", 10);
+        b1 = new Book("Percy Jackson", "Chino", "Fantasy", 10, ReadingStatus.READING);
+        b2 = new Book("1984", "George Orwell", "Fiction", 8, ReadingStatus.READ);
+        b3 = new Book("Think Like a Monk", "Jay Shetty", "Self-help", 9,
+                ReadingStatus.WANT_TO_READ);
+        b4 = new Book("A Little Life", "Chino", "Fiction", 10,
+                ReadingStatus.WANT_TO_READ);
     }
 
     @Test
@@ -94,7 +97,7 @@ public class BookListTest {
         testBooks.addBook(b3);
         testBooks.addBook(b4);
 
-        List<Book> allBooksByChino= testBooks.getBooksByAuthor("Chino");
+        List<Book> allBooksByChino = testBooks.getBooksByAuthor("Chino");
         assertEquals(2, allBooksByChino.size());
         assertEquals(b1, allBooksByChino.get(0));
         assertEquals(b4, allBooksByChino.get(1));
@@ -113,18 +116,20 @@ public class BookListTest {
         assertFalse(testBooks.hasBook("1984"));
     }
 
-//    @Test
-//    public void testHasBookButNoBook() {
-//        //expecting numBooks to be 1, and no exceptions thrown
-//        BookList bookList = new BookList();
-//        bookList.addBook(b2);
-//
-//        try {
-//            bookList.hasBook(b2.getTitle());
-//        } catch (NoBookOnShelfException e) {
-//            fail("Got NoBookOnShelfException when shouldn't have");
-//        }
-//
-//    }
-//
+    @Test
+    public void testGetBooksByReadingStatus() {
+        testBooks.addBook(b1);
+        testBooks.addBook(b2);
+        testBooks.addBook(b3);
+        testBooks.addBook(b4);
+
+        List<Book> booksWantToRead = testBooks.getBooksByReadingStatus(ReadingStatus.WANT_TO_READ);
+        assertEquals(2, booksWantToRead.size());
+        assertEquals(b3, booksWantToRead.get(0));
+        assertEquals(b4, booksWantToRead.get(1));
+
+
+    }
+
+
 }

@@ -40,8 +40,8 @@ public class Book implements Writable {
     }
 
     //EFFECTS: returns reading status
-    public String getReadingStatus() {
-        return status.getStatus();
+    public ReadingStatus getReadingStatus() {
+        return status;
     }
 
     //EFFECTS: returns title
@@ -98,5 +98,13 @@ public class Book implements Writable {
     @Override
     public int hashCode() {
         return Objects.hash(title, author, genre, rating, status);
+    }
+
+    @Override
+    public String toString() {
+        return title + " by " + author;
+//                + " - genre: " + genre + " - rating: " + rating
+//                + " - status: " + status;
+
     }
 }

@@ -17,8 +17,6 @@ public class Frame extends JFrame {
         this.setSize(width, height);
         this.setLayout(null);
         this.getContentPane().setBackground(Color.white);
-//        this.setBackground(background);
-//        this.setLayout(new GridBagLayout());
 
     }
 

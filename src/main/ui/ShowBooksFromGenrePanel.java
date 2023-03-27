@@ -6,13 +6,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ShowBooksFromGenre extends ShowBooksPanel {
+
+//represents a ShowBooksFromGenre panel
+public class ShowBooksFromGenrePanel extends ShowBooksPanel {
     private JLabel text;
     private JButton submit;
     private JComboBox selectGenre;
     private ArrayList<String> genres;
 
-    public ShowBooksFromGenre(int width, int height, BookList bookList, CardLayout cards, JPanel cardLayoutPanel) {
+    public ShowBooksFromGenrePanel(int width, int height, BookList bookList, CardLayout cards, JPanel cardLayoutPanel) {
         super(width, height, bookList, cards, cardLayoutPanel);
 
         this.text = new JLabel("Select a genre: ");
@@ -38,7 +40,7 @@ public class ShowBooksFromGenre extends ShowBooksPanel {
     }
 
     // MODIFIES: submit
-    // EFFECTS: upon button press, show only the books that belong to the selected category
+    // EFFECTS: upon button press, show only the books that belong to the selected genre
     private void addActions(BookList bookList) {
         this.submit.addActionListener(e -> {
             books = bookList.getBooksFromGenre(selectGenre.getSelectedItem().toString());

@@ -21,7 +21,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    //EFFECTS: reads booklist from file and returns it;
+    //EFFECTS: reads book list from file and returns it;
     // throws IOException if an error occurs reading data from file
     public BookList read() throws IOException {
         String jsonData = readFile(source);
@@ -40,7 +40,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    //EFFECTS: parses booklist from JSON object and returns it
+    //EFFECTS: parses book list from JSON object and returns it
     private BookList parseBookList(JSONObject jsonObject) {
 //        String title = jsonObject.getString("title");
         BookList bl = new BookList();
@@ -49,7 +49,7 @@ public class JsonReader {
     }
 
     //MODIFIES: bl
-    //EFFECTS: parses books from JSON object and adds them to booklist
+    //EFFECTS: parses books from JSON object and adds them to book list
     private void addBooks(BookList bl, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("books");
         for (Object json : jsonArray) {
@@ -58,19 +58,6 @@ public class JsonReader {
         }
     }
 
-//    //MODIFIES: bl
-//    //EFFECTS: parses book from JSON object and adds it to booklist
-//    private void addBook(BookList bl, JSONObject jsonObject) {
-//        String title = jsonObject.getString("title");
-//        String author = jsonObject.getString("author");
-//        String genre = jsonObject.getString("genre");
-//        int rating = jsonObject.getInt("rating");
-//
-//
-//        Book b = new Book(title, author, genre, rating);
-//        bl.addBook(b);
-//
-//    }
 
     //MODIFIES: bl
     //EFFECTS: parses book from JSON objects and adds it to book list

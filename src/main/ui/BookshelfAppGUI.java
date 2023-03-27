@@ -32,7 +32,7 @@ public class BookshelfAppGUI {
     private StartUpPanel startUpPanel;
     private HomePagePanel homePagePanel;
     private ShowBooksPanel showBooksPanel;
-    private ShowBooksFromGenre showBooksFromGenre;
+    private ShowBooksFromGenrePanel showBooksFromGenre;
     private ShowBooksByReadingStatusPanel showBooksByReadingStatusPanel;
     private AddBookPanel addBookPanel;
     private DeleteBookPanel deleteBookPanel;
@@ -44,14 +44,7 @@ public class BookshelfAppGUI {
         runApp();
     }
 
-//    //MODIFIES: eventlog
-//    //EFFECTS: prints eventlog
-//    private void printLog(EventLog eventlog) {
-//        for (Event next: eventlog) {
-//            System.out.println(next.toString() + "\n");
-//        }
-//        eventlog.clear();
-//    }
+
 
     //EFFECTS: runs the BookshelfApp
     private void runApp() {
@@ -67,7 +60,7 @@ public class BookshelfAppGUI {
         frame.setVisible(true);
     }
 
-    //represents the AddAnimePanel
+    //represents the AddBookPanel
     private class AddBookPanel extends AddBookPanelNoSubmit {
 
         public AddBookPanel(int width, int height, BookList bookList, CardLayout cards, JPanel cardLayoutPanel) {
@@ -85,7 +78,6 @@ public class BookshelfAppGUI {
                 ReadingStatus readingStatusValue = (ReadingStatus) selectReadingStatus.getSelectedItem();
 
                 Book newBook = new Book(titleValue, authorValue, genreValue, ratingValue, readingStatusValue);
-//                books.add(titleValue);
                 bookList.addBook(newBook);
                 showBooksPanel.refresh(bookList.getAllBooks());
                 showBooksFromGenre.refresh(bookList.getAllBooks());
@@ -233,7 +225,7 @@ public class BookshelfAppGUI {
     }
 
     //MODIFIES: this
-    //EFFECTS: loads animes from file
+    //EFFECTS: loads books from file
     private void loadFile() {
         try {
             this.bookList = jsonReader.read();
@@ -261,7 +253,7 @@ public class BookshelfAppGUI {
     private void initOtherPanels() {
         homePagePanel = new HomePagePanel(WIDTH, HEIGHT, cards, cardLayoutPanel);
         showBooksPanel = new ShowBooksPanel(WIDTH, HEIGHT, bookList, cards, cardLayoutPanel);
-        showBooksFromGenre = new ShowBooksFromGenre(WIDTH, HEIGHT,
+        showBooksFromGenre = new ShowBooksFromGenrePanel(WIDTH, HEIGHT,
                 bookList, cards, cardLayoutPanel);
         showBooksByReadingStatusPanel = new ShowBooksByReadingStatusPanel(WIDTH, HEIGHT,
                 bookList, cards, cardLayoutPanel);

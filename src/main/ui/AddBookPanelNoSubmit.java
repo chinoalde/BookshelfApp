@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
+//represents an AddBookPanel with no submit
 public class AddBookPanelNoSubmit extends JPanel {
     private JLabel title;
     private JLabel author;

@@ -6,6 +6,7 @@ import model.ReadingStatus;
 import javax.swing.*;
 import java.awt.*;
 
+//represents a ShowBooksByReadingStatus panel
 public class ShowBooksByReadingStatusPanel extends ShowBooksPanel {
     private JLabel text;
     private JButton submit;
@@ -38,7 +39,7 @@ public class ShowBooksByReadingStatusPanel extends ShowBooksPanel {
     }
 
     // MODIFIES: submit
-    // EFFECTS: upon button press, show only the books that belong to the selected category
+    // EFFECTS: upon button press, show only the books that have the selected reading status
     private void addActions(BookList bookList) {
         this.submit.addActionListener(e -> {
             books = bookList.getBooksByReadingStatus((ReadingStatus) selectReadingStatus.getSelectedItem());

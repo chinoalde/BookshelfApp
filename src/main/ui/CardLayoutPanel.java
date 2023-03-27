@@ -3,6 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
+//represents a CardLayoutPanel
 public class CardLayoutPanel extends JPanel {
     public CardLayoutPanel(int width, int height) {
         this.setBackground(Color.WHITE);

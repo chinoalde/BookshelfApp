@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+//represents a ShowBooksPanel
 public class ShowBooksPanel extends JPanel {
     protected JList<Book> jlist;
     protected DefaultListModel<Book> model;
@@ -44,7 +45,7 @@ public class ShowBooksPanel extends JPanel {
     }
 
     // MODIFIES: model
-    // EFFECTS: populates the model with expenses
+    // EFFECTS: populates the model with books
     public void loadList() {
         for (Book e : books) {
             model.addElement(e);
@@ -52,10 +53,10 @@ public class ShowBooksPanel extends JPanel {
     }
 
     // MODIFIES: model
-    // EFFECTS: resets and populates the model with new expenses (after filtering)
-    public void refresh(List<Book> newExpenses) {
+    // EFFECTS: resets and populates the model with new books (after filtering)
+    public void refresh(List<Book> newBooks) {
         model.clear();
-        for (Book e : newExpenses) {
+        for (Book e : newBooks) {
             model.addElement(e);
         }
     }

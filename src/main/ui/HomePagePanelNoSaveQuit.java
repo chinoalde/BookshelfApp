@@ -6,6 +6,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.*;
 
+// represents a HomePagePanel with no save or quit button
 public class HomePagePanelNoSaveQuit extends JPanel {
     private int width;
     private int height;
@@ -41,7 +42,7 @@ public class HomePagePanelNoSaveQuit extends JPanel {
 
     // MODIFIES: this
     // EFFECTS: sets up the welcomeText label and adds it to the panel
-    // the code from lines 7-10 of this method are from https://bit.ly/3DfykyB
+    // from https://bit.ly/3DfykyB
     private void addWelcomeText() {
         JTextPane welcomeText = new JTextPane();
         welcomeText.setText("Welcome to the BookshelfApp, please select one of the following options");

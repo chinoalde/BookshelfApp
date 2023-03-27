@@ -15,7 +15,7 @@ public class StartUpPanelNoStartButton extends JPanel {
         this.setBorder(BorderFactory.createEmptyBorder());
         this.setLayout(null);
 
-        // image source: https://tenor.com/view/bugs-bunny-looney-tunes-cash-money-counting-money-gif-17544086
+        // image source: https://www.pinterest.ca/pin/673428950508064913/
         this.img = new ImageIcon("./data/ReadingGIF.gif");
         this.imgLabel = new JLabel(img);
         this.imgLabel.setHorizontalAlignment(JLabel.CENTER);
