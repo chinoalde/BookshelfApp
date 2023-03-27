@@ -67,7 +67,7 @@ class BookTest {
         target = new Book("Book", "Chino", "Non-fiction", 1);
         assertFalse(testBook.equals(target));
 
-        target = new Book("Book", "Chino", "fiction", 1);
+        target = new Book("Book", "Chino", "fiction", 10);
         assertFalse(testBook.equals(target));
 
 
