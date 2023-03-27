@@ -5,12 +5,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BookTest {
-    private Book testBook, testBook2;
+    private Book testBook, testBook2, testBook3;
 
     @BeforeEach
     public void runBefore() {
         testBook = new Book("Book", "Chino","Non-fiction", 10);
         testBook2 = new Book("1984", "George Orwell", "Fiction", 6);
+        testBook3 = new Book("CPSC 210", "Steve Wolfman", "Science", 10,
+                ReadingStatus.READING);
+
+
     }
 
     @Test
@@ -18,6 +22,14 @@ class BookTest {
         assertEquals("Book", testBook.getTitle());
         assertEquals("Chino", testBook.getAuthor());
         assertEquals("Non-fiction", testBook.getGenre());
+        assertEquals(10, testBook.getRating());
+        assertEquals(ReadingStatus.WANT_TO_READ, testBook.getReadingStatus());
+
+        assertEquals("CPSC 210", testBook3.getTitle());
+        assertEquals("Steve Wolfman", testBook3.getAuthor());
+        assertEquals("Science", testBook3.getGenre());
+        assertEquals(10, testBook3.getRating());
+        assertEquals(ReadingStatus.READING, testBook3.getReadingStatus());
     }
 
     @Test
