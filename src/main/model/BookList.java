@@ -21,11 +21,11 @@ public class BookList implements Writable {
     public void addBook(Book book, String option) {
         books.add(book);
         if (option.equals("load")) {
-            EventLog.getInstance().logEvent(new Event("Loaded book  " + book.getTitle()
+            EventLog.getInstance().logEvent(new Event("Loaded book " + book.getTitle()
                     +
                     " to list."));
         } else if (option.equals("add")) {
-            EventLog.getInstance().logEvent(new Event("Added book  " + book.getTitle()
+            EventLog.getInstance().logEvent(new Event("Added book " + book.getTitle()
                     +
                     " to list."));
         }
@@ -37,7 +37,7 @@ public class BookList implements Writable {
     //         title from the list of books
     public void removeBook(Book target) {
         books.remove(target);
-        EventLog.getInstance().logEvent(new Event("book anime " + target.getTitle()
+        EventLog.getInstance().logEvent(new Event("Removed book " + target.getTitle()
                 +
                 " from list."));
 

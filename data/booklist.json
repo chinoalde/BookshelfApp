@@ -7,10 +7,17 @@
         "title": "Think Like a Monk"
     },
     {
-        "author": "penis",
-        "reading status": "WANT_TO_READ",
+        "author": "Lucius Seneca",
+        "reading status": "READING",
         "genre": "Self-help",
         "rating": 1,
-        "title": "penis"
+        "title": "Letters from a Stoic"
+    },
+    {
+        "author": "Steve Wolfman",
+        "reading status": "READING",
+        "genre": "Non-fiction",
+        "rating": 10,
+        "title": "CPSC 210"
     }
 ]}

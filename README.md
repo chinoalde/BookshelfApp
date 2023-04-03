@@ -35,4 +35,14 @@ will allow individuals to keep track of their bookshelf, and allow peers to see 
 
 - visual component can be found on the starting page with the anime reading gif as well as the file icon when prompted to 
 load saved data.
-- 
+
+### Phase 4: Task 2
+
+Sun Apr 02 23:15:45 PDT 2023
+Loaded book Think Like a Monk to list.
+
+Sun Apr 02 23:16:27 PDT 2023
+Added book Letters from a Stoic to list.
+
+Sun Apr 02 23:16:43 PDT 2023
+Added book CPSC 210 to list.
