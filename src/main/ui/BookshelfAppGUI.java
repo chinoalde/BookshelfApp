@@ -2,6 +2,8 @@ package ui;
 
 import model.Book;
 import model.BookList;
+import model.Event;
+import model.EventLog;
 import model.ReadingStatus;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -78,7 +80,7 @@ public class BookshelfAppGUI {
                 ReadingStatus readingStatusValue = (ReadingStatus) selectReadingStatus.getSelectedItem();
 
                 Book newBook = new Book(titleValue, authorValue, genreValue, ratingValue, readingStatusValue);
-                bookList.addBook(newBook);
+                bookList.addBook(newBook, "add");
                 showBooksPanel.refresh(bookList.getAllBooks());
                 showBooksFromGenre.refresh(bookList.getAllBooks());
                 showBooksByReadingStatusPanel.refresh(bookList.getAllBooks());
@@ -197,6 +199,7 @@ public class BookshelfAppGUI {
                     saveFile();
                 }
                 frame.dispose();
+                printLog(EventLog.getInstance());
             });
         }
 
@@ -210,6 +213,13 @@ public class BookshelfAppGUI {
             this.quit.setFont(new Font("Monospaced", Font.PLAIN, 12));
         }
 
+    }
+
+    private void printLog(EventLog eventLog) {
+        for (Event next : eventLog) {
+            System.out.println(next.toString() + "\n");
+        }
+        eventLog.clear();
     }
 
 

@@ -18,8 +18,17 @@ public class BookList implements Writable {
 
     //MODIFIES: this
     //EFFECTS: adds a book to the list of books
-    public void addBook(Book book) {
+    public void addBook(Book book, String option) {
         books.add(book);
+        if (option.equals("load")) {
+            EventLog.getInstance().logEvent(new Event("Loaded book  " + book.getTitle()
+                    +
+                    " to list."));
+        } else if (option.equals("add")) {
+            EventLog.getInstance().logEvent(new Event("Added book  " + book.getTitle()
+                    +
+                    " to list."));
+        }
     }
 
     //REQUIRES: books is not empty
@@ -28,6 +37,10 @@ public class BookList implements Writable {
     //         title from the list of books
     public void removeBook(Book target) {
         books.remove(target);
+        EventLog.getInstance().logEvent(new Event("book anime " + target.getTitle()
+                +
+                " from list."));
+
     }
 //    public void removeBook(String title) {
 //        for (Book b: books) {

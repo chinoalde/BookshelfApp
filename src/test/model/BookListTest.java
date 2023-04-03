@@ -26,10 +26,10 @@ public class BookListTest {
     @Test
     public void testAddBooks() {
         assertEquals(0, testBooks.bookListSize());
-        testBooks.addBook(b1);
+        testBooks.addBook(b1, "add");
         assertEquals(1, testBooks.bookListSize());
-        testBooks.addBook(b2);
-        testBooks.addBook(b3);
+        testBooks.addBook(b2, "add");
+        testBooks.addBook(b3, "add");
         assertEquals(3, testBooks.bookListSize());
     }
 
@@ -41,9 +41,9 @@ public class BookListTest {
         assertEquals(0, testBooks.bookListSize());
         testBooks.removeBook(b1);
 
-        testBooks.addBook(b1);
-        testBooks.addBook(b2);
-        testBooks.addBook(b3);
+        testBooks.addBook(b1, "add");
+        testBooks.addBook(b2, "add");
+        testBooks.addBook(b3, "add");
 
         //book is in the list and can be removed
         assertEquals(3, testBooks.bookListSize());
@@ -51,7 +51,7 @@ public class BookListTest {
         assertEquals(2, testBooks.bookListSize());
         assertEquals(b2.getTitle(), testBooks.getAllBooks().get(0).getTitle());
 
-        testBooks.addBook(b1);
+        testBooks.addBook(b1, "add");
 
         //book is not in the list
         testBooks.removeBook(b4);
@@ -65,9 +65,9 @@ public class BookListTest {
         testBook1 = testBooks.getBook("Percy Jackson");
         assertEquals(null, testBook1);
 
-        testBooks.addBook(b1);
-        testBooks.addBook(b2);
-        testBooks.addBook(b3);
+        testBooks.addBook(b1, "add");
+        testBooks.addBook(b2, "add");
+        testBooks.addBook(b3, "add");
 
         //book is in the book set
         Book testBook = testBooks.getBook("Percy Jackson");
@@ -79,10 +79,10 @@ public class BookListTest {
 
     @Test
     public void testGetBooksFromGenre() {
-        testBooks.addBook(b1);
-        testBooks.addBook(b2);
-        testBooks.addBook(b3);
-        testBooks.addBook(b4);
+        testBooks.addBook(b1, "add");
+        testBooks.addBook(b2, "add");
+        testBooks.addBook(b3, "add");
+        testBooks.addBook(b4, "add");
 
         List<Book> allBooksFiction = testBooks.getBooksFromGenre("Fiction");
         assertEquals(2, allBooksFiction.size());
@@ -92,10 +92,10 @@ public class BookListTest {
 
     @Test
     public void testGetBooksFromAuthor() {
-        testBooks.addBook(b1);
-        testBooks.addBook(b2);
-        testBooks.addBook(b3);
-        testBooks.addBook(b4);
+        testBooks.addBook(b1, "add");
+        testBooks.addBook(b2, "add");
+        testBooks.addBook(b3, "add");
+        testBooks.addBook(b4, "add");
 
         List<Book> allBooksByChino = testBooks.getBooksByAuthor("Chino");
         assertEquals(2, allBooksByChino.size());
@@ -109,7 +109,7 @@ public class BookListTest {
         assertFalse(testBooks.hasBook("Percy Jackson"));
 
         //list has the book
-        testBooks.addBook(b1);
+        testBooks.addBook(b1, "add");
         assertTrue(testBooks.hasBook("Percy Jackson"));
 
         //list does not have the book
@@ -118,10 +118,10 @@ public class BookListTest {
 
     @Test
     public void testGetBooksByReadingStatus() {
-        testBooks.addBook(b1);
-        testBooks.addBook(b2);
-        testBooks.addBook(b3);
-        testBooks.addBook(b4);
+        testBooks.addBook(b1, "add");
+        testBooks.addBook(b2, "add");
+        testBooks.addBook(b3, "add");
+        testBooks.addBook(b4, "add");
 
         List<Book> booksWantToRead = testBooks.getBooksByReadingStatus(ReadingStatus.WANT_TO_READ);
         assertEquals(2, booksWantToRead.size());

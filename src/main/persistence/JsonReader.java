@@ -69,7 +69,7 @@ public class JsonReader {
 
 
         Book b = new Book(title, author, genre, rating);
-        bl.addBook(b);
+        bl.addBook(b, "load");
     }
 
 }

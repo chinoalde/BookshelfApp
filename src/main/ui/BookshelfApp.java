@@ -63,7 +63,7 @@ public class BookshelfApp {
         Book b1 = new Book("Think Like a Monk", "Jay Shetty", "Self-help", 10);
 
         bookList = new BookList();
-        bookList.addBook(b1);
+        bookList.addBook(b1, "add");
 
         input = new Scanner(System.in);
         input.useDelimiter("\n");
@@ -240,7 +240,7 @@ public class BookshelfApp {
 
         Book newBook = new Book(title, author, genre, rating);
 
-        bookList.addBook(newBook);
+        bookList.addBook(newBook, "add");
 
         System.out.println("Voila! " + newBook.getTitle() + " has been added to the bookshelf!");
     }

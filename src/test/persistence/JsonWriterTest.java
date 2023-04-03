@@ -53,9 +53,9 @@ public class JsonWriterTest extends JsonTest{
     @Test
     public void testWriterNonEmptyBookList() {
         try {
-            books.addBook(new Book("A Little Life", "Hanya Yanagihara", "Fiction", 10));
-            books.addBook(new Book("1984", "George Orwell", "Fantasy", 1));
-            books.addBook(new Book("Lord of the Flies", "William Golding", "Fantasy", 7));
+            books.addBook(new Book("A Little Life", "Hanya Yanagihara", "Fiction", 10), "add");
+            books.addBook(new Book("1984", "George Orwell", "Fantasy", 1), "add");
+            books.addBook(new Book("Lord of the Flies", "William Golding", "Fantasy", 7), "add");
 
             JsonWriter writer = new JsonWriter("./data/testWriterNonEmptyBookList.json");
             writer.open();
