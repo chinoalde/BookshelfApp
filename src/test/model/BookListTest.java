@@ -31,7 +31,9 @@ public class BookListTest {
         testBooks.addBook(b2, "add");
         testBooks.addBook(b3, "add");
         assertEquals(3, testBooks.bookListSize());
-//        assertEquals("Percy Jackson", testBooks.getAllBooks().get(0));
+        assertEquals("Percy Jackson", testBooks.getAllBooks().get(0).getTitle());
+
+
     }
 
     @Test
