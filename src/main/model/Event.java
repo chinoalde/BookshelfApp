@@ -39,12 +39,6 @@ public class Event {
 
     @Override
     public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
-        if (other.getClass() != this.getClass()) {
-            return false;
-        }
         Event otherEvent = (Event) other;
 
         return (this.dateLogged.equals(otherEvent.dateLogged)
@@ -52,10 +46,10 @@ public class Event {
                 this.description.equals(otherEvent.description));
     }
 
-    @Override
-    public int hashCode() {
-        return (HASH_CONSTANT * dateLogged.hashCode() + description.hashCode());
-    }
+//    @Override
+//    public int hashCode() {
+//        return (HASH_CONSTANT * dateLogged.hashCode() + description.hashCode());
+//    }
 
     @Override
     public String toString() {

@@ -24,7 +24,7 @@ public class EventTest {
     @Test
     public void testEvent() {
         assertEquals("A book was removed", e.getDescription());
-//        assertEquals(d, e.getDate());
+        assertEquals(d, e.getDate());
     }
 
     @Test
