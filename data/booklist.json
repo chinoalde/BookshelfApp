@@ -1,23 +1,23 @@
 {"books": [
     {
-        "author": "Jay Shetty",
-        "reading status": "WANT_TO_READ",
-        "genre": "Self-help",
-        "rating": 10,
-        "title": "Think Like a Monk"
-    },
-    {
         "author": "Lucius Seneca",
-        "reading status": "READING",
+        "reading status": "WANT_TO_READ",
         "genre": "Self-help",
         "rating": 1,
         "title": "Letters from a Stoic"
     },
     {
         "author": "Steve Wolfman",
-        "reading status": "READING",
+        "reading status": "WANT_TO_READ",
         "genre": "Non-fiction",
         "rating": 10,
         "title": "CPSC 210"
+    },
+    {
+        "author": "lab",
+        "reading status": "WANT_TO_READ",
+        "genre": "Self-help",
+        "rating": 1,
+        "title": "lab"
     }
 ]}

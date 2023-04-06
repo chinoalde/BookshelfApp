@@ -46,3 +46,10 @@ Added book Letters from a Stoic to list.
 
 Sun Apr 02 23:16:43 PDT 2023
 Added book CPSC 210 to list.
+
+### Phase 4: Task 3
+- I would find a way to let external classes access and modify fields in the GUI class, which would get of the 3
+"extends" relationships for AddBookPanel, HomePagePanel, and StartUpPanel
+- I would add more helper methods in the larger classes so the code is more readable
+- I would implement an observer design pattern whenever I add/delete a book instead of manually refreshing the book lists
+every time something happens.
