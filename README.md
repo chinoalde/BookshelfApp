@@ -1,4 +1,4 @@
 # Chino's Personal Project
 
-## Bookshelf App
+## *Bookshelf App*
 
